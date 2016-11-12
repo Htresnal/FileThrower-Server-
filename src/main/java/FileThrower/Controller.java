@@ -42,10 +42,8 @@ public class Controller {
            NETConnection_Files newConnection=new NETConnection_Files(portAddr);
            newConnection.init(portAddr);
            newConnection.recvConnection();
-           System.out.println("Accepted connection from : "+newConnection.connectionInfo());
            label_StatusBar.setText("Accepted connection from : "+newConnection.connectionInfo());
 
-           System.out.println("Checking the behaviour of our client...");
            label_StatusBar.setText("Checking the behaviour of our client...");
            String tmpString=newConnection.getSentence();
            if (!Objects.equals(tmpString, new String("Hi!")))
@@ -54,7 +52,6 @@ public class Controller {
                throw new IOException("[ERROR] The received data has unexpected content.");
            }
 
-           System.out.println("Well, isn't he a nice guy? Lets answer him!");
            label_StatusBar.setText("Well, isn't he a nice guy? Lets answer him!");
            newConnection.sendSentence("Hi!");
 
@@ -62,27 +59,19 @@ public class Controller {
            if (!Objects.equals(tmpString, new String("filerecv")))
            {
                label_StatusBar.setText("[ERROR] Server speaks some foreign language.");
-               System.out.println(tmpString);
-               System.out.println(tmpString.length());
-               System.out.println(new String("Hi!"));
-               System.out.println(new String("Hi!").length());
                throw new IOException("[ERROR] The received data has unexpected content.");
            }
 
-           System.out.println("He wants to send us a file. Lets accept...");
            label_StatusBar.setText("He wants to send us a file. Lets accept...");
            newConnection.sendSentence("filesend");
 
-           System.out.println("Now, we need him to say us the file name and open state.");
            label_StatusBar.setText("Now, we need him to say us the file name and open state.");
 
            String strFileName=newConnection.getSentence();
            newConnection.sendSentence("OK");
-           System.out.println("File name received:"+strFileName);
            tmpString=newConnection.getSentence();
            newConnection.sendSentence("OK");
            newConnection.recvFile((input_filePath.getText()+"\\"+strFileName), (chbx_DoReceive.isSelected() && Objects.equals(tmpString, new String("1")))?true:false);
-           System.out.println("File received.");
            label_StatusBar.setText("File received.");
            newConnection.deInit();
        }
