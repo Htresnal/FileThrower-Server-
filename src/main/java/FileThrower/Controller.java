@@ -76,11 +76,14 @@ public class Controller {
            System.out.println("Now, we need him to say us the file name and open state.");
            label_StatusBar.setText("Now, we need him to say us the file name and open state.");
 
-           int st_openOnDownload=chbx_DoReceive.isSelected() ? 1:0;
-           newConnection.recvFile(newConnection.getSentence(),st_openOnDownload);
-
-           System.out.println("File sent.");
-           label_StatusBar.setText("File sent.");
+           String strFileName=newConnection.getSentence();
+           newConnection.sendSentence("OK");
+           System.out.println("File name received:"+strFileName);
+           tmpString=newConnection.getSentence();
+           newConnection.sendSentence("OK");
+           newConnection.recvFile((input_filePath.getText()+"\\"+strFileName), (chbx_DoReceive.isSelected() && Objects.equals(tmpString, new String("1")))?true:false);
+           System.out.println("File received.");
+           label_StatusBar.setText("File received.");
            newConnection.deInit();
        }
        catch (IOException e)
