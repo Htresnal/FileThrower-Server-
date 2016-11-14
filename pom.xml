@@ -108,8 +108,10 @@
             </manifest>
           </archive>
           <descriptorRefs>
-            <descriptorRef>File Thrower(Server)</descriptorRef>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
           </descriptorRefs>
+          <finalName>test</finalName>
+          <appendAssemblyId>false</appendAssemblyId>
         </configuration>
       </plugin>
 
