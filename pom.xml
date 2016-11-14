@@ -105,14 +105,14 @@
         <executions>
           <execution>
             <id>jar-with-dependencies</id>
-            <phase>package</phase>
+            <phase>prepare-package</phase>
             <goals>
               <goal>single</goal>
             </goals>
             <configuration>
-              <descriptorRefs>
-                <descriptorRef>jar-with-dependencies</descriptorRef>
-              </descriptorRefs>
+              <descriptors>
+                <descriptor>src/main/assembly/jar-assembly.xml</descriptor>
+              </descriptors>
               <finalName>File-Thrower-SV</finalName>
               <appendAssemblyId>false</appendAssemblyId>
             </configuration>
