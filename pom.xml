@@ -99,6 +99,19 @@
           <includePluginDependencies>false</includePluginDependencies>
         </configuration>
       </plugin>
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifest>
+              <mainClass>FileThrower.MainClass</mainClass>
+            </manifest>
+          </archive>
+          <descriptorRefs>
+            <descriptorRef>File Thrower(Server)</descriptorRef>
+          </descriptorRefs>
+        </configuration>
+      </plugin>
 
     </plugins>
   </build>
